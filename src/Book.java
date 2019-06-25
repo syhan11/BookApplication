@@ -80,6 +80,7 @@ public class Book {
 
     public void printBookInfo() {
         System.out.printf("\"%s\" written by %s is about %s\n", title, author, description);
-        System.out.printf("Price:\t%.2f\tAvailable:%d\n", price, numbInStock);
+        System.out.printf("Price:\t$%.2f\tAvailable:%d\n", price, numbInStock);
     }
+
 }
