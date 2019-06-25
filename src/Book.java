@@ -83,14 +83,20 @@ public class Book {
 
     /*
      * getDisplayText() prints the author, title and description of a book.
+     *  It takes no parameters.
+     *  When called it returns a string containing the author, title and description.
      */
-    public void getDisplayText() {
-        System.out.printf("%s written by %s is about %s\n", title, author, description);
+    public String getDisplayText() {
+        String msg = "";
+        msg = title + " written by " + author + " is about " + description;
+        return msg;
     }
 
     public void printBookInfo() {
-        System.out.printf("\"%s\" written by %s is about %s\n", title, author, description);
+
+        System.out.println(getDisplayText());
         System.out.printf("SKU: %s\tPrice: $%.2f\tAvailable: %d\n", keySKU, price, numbInStock);
+
     }
 
 }
