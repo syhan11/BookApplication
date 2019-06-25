@@ -1,5 +1,5 @@
 public class Book {
-
+    private String keySKU;
     private String title;
     private String author;
     private String description;
@@ -8,6 +8,7 @@ public class Book {
 
 
     public Book() {
+        this.keySKU = "";
         this.title = "";
         this.author = "";
         this.description = "";
@@ -15,13 +16,22 @@ public class Book {
         this.numbInStock = 0;
     }
 
-    public Book(String title, String author, String description,
+    public Book(String keySKU, String title, String author, String description,
                            double price, int numbInStock) {
+        this.keySKU = keySKU;
         this.title = title;
         this.author = author;
         this.description = description;
         this.price = price;
         this.numbInStock = numbInStock;
+    }
+
+    public String getkeySKU() {
+        return keySKU;
+    }
+
+    public void setkeySKU(String keySKU) {
+        this.keySKU = keySKU;
     }
 
     public String getTitle() {
@@ -80,7 +90,7 @@ public class Book {
 
     public void printBookInfo() {
         System.out.printf("\"%s\" written by %s is about %s\n", title, author, description);
-        System.out.printf("Price:\t$%.2f\tAvailable:%d\n", price, numbInStock);
+        System.out.printf("SKU: %s\tPrice: $%.2f\tAvailable: %d\n", keySKU, price, numbInStock);
     }
 
 }

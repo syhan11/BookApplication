@@ -24,11 +24,16 @@ public class BookApplication {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
 
-        System.out.println("How many books do you want to enter?");
+        initInventory();                         // initialize the book inventory
+
+        /*
+        System.out.println("How many books do you want to add to the book inventory?");
         int bookNo = keyboard.nextInt();
         keyboard.nextLine();                     // skip to next line
 
-        initInventory(bookNo, keyboard);         // initialize book inventory array
+        addInventory(bookNo, keyboard);         // add book to the inventory array
+        */
+
         printInventory();
 
         int max = 5;
@@ -38,7 +43,7 @@ public class BookApplication {
         boolean flag = true;
 
         do {
-            System.out.println("\nWhich title are you interested in? Type 'Q' to quit.");
+            System.out.println("\nWhich SKU are you interested in? Type 'Q' to quit.");
             msg = keyboard.nextLine();
 
             if (msg.equalsIgnoreCase("Q"))
@@ -56,13 +61,44 @@ public class BookApplication {
                         System.out.printf("Not enough books.  There are only %d books left.\n", myBook.getInStock());
 
                 } else
-                    System.out.println("Can not find the title, " + msg);
+                    System.out.println("Can not find the SKU, " + msg);
             }
 
         } while (flag);
     }
 
-    public static void initInventory(int valMax, Scanner varInput) {
+    /*
+     * Initialize the book inventory.  For now, all books have 10 copies.
+     */
+    public static void initInventory() {
+        Book myBook;
+
+        myBook = new Book("Java1001","Head First Java","Kathy Sierra and Bert Bates",
+                           "Easy to read Java workbook", 47.50, 10);
+        bookInventory.add(myBook);
+
+        myBook = new Book("Java1002", "Thinking in Java", "Bruce Eckel",
+                          "Details about Java under the hood", 20.00, 10);
+        bookInventory.add(myBook);
+
+        myBook = new Book("Orcl1003","OCP: Oracle Certified Professional Java SE","Jeanne Boyarsky",
+                          "Everything you need to know in one place",45.00, 10);
+        bookInventory.add(myBook);
+
+        myBook = new Book("Python1004	","Automate the Boring Stuff with Python","Al Sweigart",
+                          "Fun with Python", 10.50, 10);
+        bookInventory.add(myBook);
+
+        myBook = new Book("Zombie1005", "The Maker's Guide to the Zombie Apocalypse", "Simon Monk",
+                          "Defend Your Base with Simple Circuits, Arduino, and Raspberry Pi", 16.50, 10);
+        bookInventory.add(myBook);
+
+        myBook = new Book("Rasp1006", "Raspberry Pi Projects for the Evil Genius", "Donald Norris",
+                          "A dozen fiendishly fun projects for the Raspberry Pi!", 14.75, 10);
+        bookInventory.add(myBook);
+    }
+
+    public static void addInventory(int valMax, Scanner varInput) {
         Book myBook;
         String msg;
         double price = 0.0;
@@ -119,13 +155,18 @@ public class BookApplication {
 
     }
 
-    public static Book searchBook(String varTitle) {
+    /*
+     * Search for a given SKU value in the bookInventory array
+     * It will return the Book if found
+     * Otherwise it will return null value
+     */
+    public static Book searchBook(String varSKU) {
         boolean found = false;
         Book myBook = null;
 
 
         for (Book tmpBook : bookInventory)
-            if (varTitle.equalsIgnoreCase(tmpBook.getTitle())) {
+            if (varSKU.equalsIgnoreCase(tmpBook.getkeySKU())) {
                 //found = true;
                 myBook = tmpBook;
                 break;
